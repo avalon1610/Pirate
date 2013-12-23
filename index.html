@@ -30,22 +30,22 @@
   
   #arp-content .panel {
     width: 30%;
-    
   }
 
-  .table td div {
-    vertical-align: top;
+  #arp-content h4 {
+    display: inline-block;
   }
 
-  .table td {
-    white-space:nowrap; 
-    margin-top: 10px;
-    margin-bottom: 10px;
+  #arp-content select {
+    display: inline-block;
+    width: auto;
+    margin-top: 2.5px;
   }
 
-  .table td .input-group {
-    width: 30%;
+  #arp-content .btn-group {
+    margin-top: 2.5px;
   }
+
   </style>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
@@ -166,37 +166,45 @@
       <div class="list-group">
         <a href="#" class="list-group-item">
           <p class="list-group-item-heading">Request Storm</p>
-          <div class="list-group-item-text" style="display: none;">
-            <table class="table">
-              <tr>
-                <td><p>Rate Limit</p></td>
-                <td>
-                  <div class="radio">
-                    <label><input type="radio">Closed</label>
-                  </div>        
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td>
-                  <div class="radio">
-                    <label><input type="radio">Limit</label>
-                  </div>        
-                </td>
-                <td>
-                  <div class="input-group input-group-sm">
-                    <input type="text" class="form-control double-input">
+          <div class="list-group-item-text container-fluid">
+            <div class="row">
+              <div class="col-md-4">
+                <h4><span class="label label-default">Rate Limit</span></h4>
+              </div>
+              <div class="col-md-8">
+                <div class="btn-group" data-toggle="buttons">
+                  <label class="btn btn-primary">
+                    <input type="radio" name="options" id="Closed-radio"> Closed
+                  </label>
+                  <label class="btn btn-primary">
+                    <input type="radio" name="options" id="Limit-radio"> Limit
+                  </label>
+                  <label class="btn btn-primary">
+                    <input type="radio" name="options" id="option3"> Option 3
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="input-group" style="display:none;" id="limit-input">
+                    <input type="text" class="form-control" placeholder="input rate limit (packet/second)">
                     <span class="input-group-addon">P/s</span>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>aaaaa</td>
-                <td>aaaaa</td>
-                <td>aaaaa</td>
-              </tr>
-            </table>
+                </div>
+              </div> 
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <h4><span class="label label-default">Options</span></h4>
+              </div>
+              <div class="col-md-8">
+                <select class="form-control">
+                  <option value="one">One</option>
+                  <option value="one">One</option>
+                  <option value="one">One</option>
+                </select>
+              </div>
+            </div>
           </div>
         </a>
         <a href="#" class="list-group-item">
@@ -246,11 +254,11 @@
   </div>
 </div>
 
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery-ui.min.js"></script>
-<script src="js/ui.js"></script>
-<script src="js/logic.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/ui.js"></script>
+<script type="text/javascript" src="js/logic.js"></script>
 
 </body>
 </html>
