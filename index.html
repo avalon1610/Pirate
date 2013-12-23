@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Project Pirate</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <style type="text/css">
+  body {
+    padding-top: 70px;
+    padding-bottom: 20px;
+  }
+
+  .navbar {
+    margin-bottom: 20px;
+  }
+
+  #env-content .panel {
+    width:31%;
+  }
+
+  .input-group {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .panel {
+    display:inline-block;
+    margin:0 10px 10px 10px;
+  }
+  
+  #arp-content .panel {
+    width: 30%;
+    
+  }
+
+  .table td div {
+    vertical-align: top;
+  }
+
+  .table td {
+    white-space:nowrap; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .table td .input-group {
+    width: 30%;
+  }
+  </style>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+</head>
+<body>
+  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse"
+      data-target=".navbar-collapse">
+      <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+      class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Project</a>
+  </div>
+  <div class="collapse navbar-collapse">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#" id="def-env">Environment</a></li>
+      <li class="dropdown"><a href="#" id="def-scan" class="dropdown-toggle"
+        data-toggle="dropdown">Scanner<b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li class="dropdown-header">Proactive</li>
+        <li><a href="#" id="tcp-scan">TCP</a></li>
+        <li><a href="#" id="udp-scan">UDP</a></li>
+        <li class="divider"></li>
+        <li class="dropdown-header">Passive</li>
+        <li><a href="#" id="pas-scan">Passive detective</a></li>
+      </ul></li>
+      <li class="dropdown"><a href="#" id="def-test" class="dropdown-toggle"
+        data-toggle="dropdown">Test Configure<b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="#" id="arp-test">ARP</a></li>
+        <li><a href="#" id="icmp-test">ICMP</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Passive detective</a></li>
+      </ul></li>
+      <li><a href="#">Test Runner</a></li>
+      <li><a href="#">Event Log</a></li>
+      <li><a href="#">Test Result</a></li>
+    </ul>
+  </div>
+</div>
+
+<div id="env-content" class='present'>
+  <div class="panel panel-default">
+    <div  class="panel-heading">
+      <h3 class="panel-title">Host</h3>
+    </div>
+    <div class="panel-body">
+      <div class="input-group">
+        <span class="input-group-addon">IP</span> 
+        <input type="text" class="form-control ip-input">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">MAC</span> 
+        <input type="text" class="form-control mac-input">
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Target</h3>
+    </div>
+    <div class="panel-body">
+      <div class="input-group">
+        <span class="input-group-addon">IP</span> 
+        <input type="text" class="form-control ip-input">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">MAC</span> 
+        <input type="text" class="form-control mac-input">
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div  class="panel-heading">
+      <h3 class="panel-title">Target</h3>
+    </div>
+    <div class="panel-body">
+      <div class="input-group">
+        <span class="input-group-addon">IP</span> 
+        <input type="text" class="form-control ip-input">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">MAC</span> 
+        <input type="text" class="form-control mac-input" >
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="tcp-content" style="display:none;">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">TCP</h3>
+    </div>
+    <div class="panel-body">
+    </div>
+  </div>
+</div>
+
+<div id="udp-content" style="display:none;">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">UDP</h3>
+    </div>
+    <div class="panel-body">
+    </div>
+  </div>
+</div>
+
+<div id="arp-content" style="display:none;">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">ARP</h3>
+    </div>
+    <div class="panel-body">
+      <div class="list-group">
+        <a href="#" class="list-group-item">
+          <p class="list-group-item-heading">Request Storm</p>
+          <div class="list-group-item-text" style="display: none;">
+            <table class="table">
+              <tr>
+                <td><p>Rate Limit</p></td>
+                <td>
+                  <div class="radio">
+                    <label><input type="radio">Closed</label>
+                  </div>        
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <div class="radio">
+                    <label><input type="radio">Limit</label>
+                  </div>        
+                </td>
+                <td>
+                  <div class="input-group input-group-sm">
+                    <input type="text" class="form-control double-input">
+                    <span class="input-group-addon">P/s</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>aaaaa</td>
+                <td>aaaaa</td>
+                <td>aaaaa</td>
+              </tr>
+            </table>
+          </div>
+        </a>
+        <a href="#" class="list-group-item">
+          <p class="list-group-item-heading">Host Reply Storm</p>
+          <div class="list-group-item-text" style="display: none;">
+            <div class="input-group">
+              <span class="input-group-addon">Rate</span>
+              <input type="text" class="form-control double-input">
+              <span class="input-group-addon">P/s</span>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">Size</span>
+              <input type="text" class="form-control double-input">
+            </div>
+          </div>
+        </a>
+        <a href="#" class="list-group-item">
+          <p class="list-group-item-heading">Cache Saturation Storm</p>
+          <div class="list-group-item-text" style="display: none;">
+            <div class="input-group">
+              <span class="input-group-addon">Rate</span>
+              <input type="text" class="form-control double-input">
+              <span class="input-group-addon">P/s</span>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">Size</span>
+              <input type="text" class="form-control double-input">
+            </div>
+          </div>
+        </a>
+        <a href="#" class="list-group-item">Grammear</a>
+      </div>
+    </div>
+  </div>
+  <div>
+
+  </div>
+</div>
+
+<div id="icmp-content" style="display:none;">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">ICMP</h3>
+    </div>
+    <div class="panel-body">
+    </div>
+  </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/logic.js"></script>
+
+</body>
+</html>
