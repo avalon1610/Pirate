@@ -1,6 +1,6 @@
 var controlref = {'def-env':'env-content','def-scan':'tcp-content','tcp-scan':'tcp-content',
   	                  'udp-scan':'udp-content','def-test':'arp-content','arp-test':'arp-content',
-  	                  'icmp-test':'icmp-content'};
+  	                  'icmp-test':'icmp-content','def-runner':'runner-content'};
 $(function(){
 	$('.navbar a').hover(function(){
 		if ($(this).parent().parent().hasClass('dropdown-menu')==false)
@@ -20,6 +20,7 @@ $(function(){
 		else {
 			for (var i in controlref) {
 				if($(this).attr('id') == i) {
+					auto_save_config();
 					$('.present').hide('slide',{ direction: "left" });
 					$('.present').removeClass('present');
 					$('#'+controlref[i]).show('slide',{ direction: "left" });
@@ -43,15 +44,57 @@ $(function(){
 		if (!$(this).children('.list-group-item-text').is(':visible'))
 		{
 			$('.list-group-item-text').slideUp(200);
+			$('.list-group-item').removeClass('sub-present');
 		}
 		$(this).children('.list-group-item-text').slideDown(200);
+		$(this).addClass('sub-present');
+
+		var ref = '.content-info[name='+$(this).attr('name')+']';
+		if (!$(ref).is(':visible'))
+			$('.content-info').slideUp(200);
+		$(ref).slideDown(200);
 	});
 
-	$('#arp-content Label').click(function(){
+	$('#rate-limit-group label').click(function(){
 		var id = $(this).children('input').attr('id');
-		if (id == 'Limit-radio')
-			$("#limit-input").slideDown(200);
-		else
+		if (id == 'Limit-radio-Rate')
+		{
+			$("#dos-input").slideUp(200);
+			$("#limit-input").slideDown(200);	
+		}
+		else if (id == 'Dos-radio-Rate')
+		{
 			$("#limit-input").slideUp(200);
+			$("#dos-input").slideDown(200);
+		}
+		else
+		{
+			$("#dos-input").slideUp(200);
+			$("#limit-input").slideUp(200);
+		}
 	});
+
+	$('#duration-group label').click(function(){
+		var id = $(this).children('input').attr('id');
+		if (id == 'Set-radio-Duration')
+			$('#duration-input').slideDown(200);
+		else
+			$('#duration-input').slideUp(200);
+	});
+
+	$('label').tooltip();
+
+	$('#auto-save-checkbox').on('switch-change',function(){
+		if (!$('#auto-save-checkbox').bootstrapSwitch('status'))
+			$('#manual-save-button').fadeIn(100);
+		else
+		{
+			$('#manual-save-button').fadeOut(100);		
+		}
+	});
+
+	$('input').on('keyup blur',destroy_popover);
+
+	$('.arp-content ')
+
 });
